@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+
+{%  block body %}
+{% load static %}
+
+  <div class="card shadow">
+    <div class="card-body" style="max-width: 80%;">
+    <center>
+     <table class="table table-lite">
+      <thead>
+        <tr><th>Sentense</th><th>Postive</th><th>Negetive</th><th>Neutral</th><th>Emotion</th></tr>
+      </thead>
+      <tbody>
+        {% for d in db %}
+        <tr><td>{{d.text}}</td><td>{{d.positive}}</td><td>{{d.negative}}</td><td>{{d.neutral}}</td>
+          {% if d.positive > 0.5 %}
+        <td>
+          <img src="{% static 'happy.jpg' %}" height="50px" width="50px">
+        </td>
+        {% elif d.negative > 0.5 %}
+        <td>
+          <img src="{% static 'angry.jpeg' %}" height="50px" width="50px">
+        </td>
+        {% else %}
+        <td>
+          <img src="{% static 'netural1.jpg' %}" height="50px" width="50px">
+        </td>
+        {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+     </table>
+    </center>
+    </div>
+</div>
+
+
+{% endblock %}
+
